@@ -1,0 +1,12 @@
+name: Output informations
+on: workflow_dispatch
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get informations
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const { data } = await github.repos.get({ owner: context.repo.owner, repo: context.repo.repo })
+            console.log(data)
