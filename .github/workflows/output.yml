@@ -1,9 +1,18 @@
 name: Output informations
-on: workflow_dispatch
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
   info:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm test
       - name: Get informations
         uses: actions/github-script@v3
         with:
