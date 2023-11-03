@@ -1,0 +1,25 @@
+name: Build and test
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm test
+      - run: npm build
+
+      # - name: Get informations
+      #   uses: actions/github-script@v3
+      #   with:
+      #     script: |
+      #       const { data } = await github.repos.get({ owner: context.repo.owner, repo: context.repo.repo })
+      #       console.log(data)
