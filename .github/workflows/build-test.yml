@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  info:
+  unit-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,7 +15,17 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm test
-      - run: npm build
+  build:
+    runs-on: ubuntu-latest
+    needs: unit-test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: echo "build"
 
       # - name: Get informations
       #   uses: actions/github-script@v3
