@@ -1,5 +1,4 @@
 import path from "node:path";
-import { defineConfig, UserConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
